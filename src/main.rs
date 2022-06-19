@@ -3,11 +3,9 @@ use std::{env, process};
 use grepit::Config;
 
 fn main() {
-    let args: Vec<String> = env::args().collect();
-
-    let config = Config::new(&args).unwrap_or_else(|err| {
+    let config = Config::new(env::args()).unwrap_or_else(|err| {
         eprintln!("Problem parsing arguments: {}", err);
-        eprintln!("Usage: {} <query> <filename>", &args[0]);
+        eprintln!("Usage: <grepit> <query> <filename>");
 
         process::exit(1);
     });
